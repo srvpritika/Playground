@@ -243,3 +243,6 @@ Every prototype has `HOW_IT_WORKS.md`, kept current on every change, with these 
 - **Phone-frame iframes get their own storage.** Browsers partition third-party storage, so an app embedded with `"embed": "phone"` doesn't see a sign-in made in its own tab. People sign in once inside the frame. The thumbnail script seeds `seedLocalStorage` inside the iframe too.
 - **Separate web portals from mobile apps with `surface` and `group`**, not title prefixes or `web`/`mobile` tags. The gallery has an All / Web / Mobile app switch and section headings driven by those fields.
 - **OG URLs must be absolute.** Next resolves `og:image` against `metadataBase` but not `og:video`, so the video URL is built with `SITE_URL` in `app/p/[slug]/page.tsx`.
+
+- **Static import lint scope.** Ignore `public/embeds/**` in ESLint: Vite snapshots contain generated/minified bundles. Validate their standalone source before copying the build.
+- **Capture fallback.** If the capture script has no Chromium and the official browser download fails, capture and inspect the static snapshot through an available browser; document the fallback and keep the normal light/dark thumbnail filenames.
